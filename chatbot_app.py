@@ -64,9 +64,8 @@ if st.button("Send"):
         st.session_state.messages.append(("Bot", bot_reply))
 
         # 5. Force UI refresh
-        st.experimental_rerun()
+        st.rerun()
 
 # --- Utility Buttons ---
 if st.button("Clear Chat"):
     st.session_state.messages = []
-    st.experimental_rerun()
