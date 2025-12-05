@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Open Source AI Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Open Source AI Explorer (Simulated)</h1>
+        <p>Explore a simulated list of popular open-source AI projects across different domains.</p>
+        
+        <div class="selection-area">
+            <label for="ai-domain-select">Select AI Domain:</label>
+            <select id="ai-domain-select">
+                <option value="nlp">Natural Language Processing (NLP)</option>
+                <option value="cv">Computer Vision (CV)</option>
+                <option value="mlops">MLOps & MLOps Tools</option>
+                <option value="frameworks">ML Frameworks</option>
+            </select>
+            <button id="explore-btn">Explore</button>
+        </div>
+
+        <div id="projects-list-area">
+            <h2>Popular Open-Source Projects:</h2>
+            <div id="projects-container">
+                <p>Select a domain and click 'Explore' to see projects.</p>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

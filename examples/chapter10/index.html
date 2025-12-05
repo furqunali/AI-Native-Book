@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10: AI API Orchestration Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI API Orchestration (Simulated)</h1>
+        <p>Enter a text and watch it go through a chain of simulated AI APIs: Sentiment Analysis -> Summarization -> Translation.</p>
+        
+        <textarea id="input-text" placeholder="e.g., The new AI-native book is an excellent resource for developers. It covers various topics from MLOps to personalized UIs."></textarea>
+        <button id="orchestrate-btn">Orchestrate AI APIs</button>
+
+        <div id="results-area">
+            <h2>Orchestration Steps:</h2>
+            <div class="api-step" id="sentiment-step">
+                <h3>1. Sentiment Analysis API Output:</h3>
+                <p id="sentiment-output">Waiting for input...</p>
+            </div>
+            <div class="api-step" id="summarization-step">
+                <h3>2. Summarization API Output:</h3>
+                <p id="summarization-output">Waiting for Sentiment Analysis...</p>
+            </div>
+            <div class="api-step" id="translation-step">
+                <h3>3. Translation API Output (to French):</h3>
+                <p id="translation-output">Waiting for Summarization...</p>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

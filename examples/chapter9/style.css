@@ -1,0 +1,129 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 750px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.preferences-selection {
+    background-color: #e8f0fe;
+    border: 1px solid #c6dafc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.preferences-selection h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.checkbox-group label {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.checkbox-group input[type="checkbox"] {
+    display: none; /* Hide default checkbox */
+}
+
+.checkbox-group input[type="checkbox"]:checked + label {
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+button {
+    background-color: #28a745; /* Green for update */
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#recommendations-area {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0f4f8;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    text-align: left;
+}
+
+#recommendations-area h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+#recommendations-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#recommendations-list li {
+    background-color: #ffffff;
+    border: 1px solid #e0e6eb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#recommendations-list li:last-child {
+    margin-bottom: 0;
+}

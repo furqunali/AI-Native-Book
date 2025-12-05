@@ -1,0 +1,108 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 700px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.agent-console {
+    border: 1px solid #e0e6eb;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    max-height: 500px;
+    overflow: hidden; /* Hide overflow from scrollbar */
+}
+
+.agent-output {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto; /* Enable scrolling for output */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.agent-message {
+    background-color: #e6f7ff;
+    border: 1px solid #b3e0ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    color: #333;
+    word-wrap: break-word;
+}
+
+.user-command {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    color: #155724;
+    text-align: right; /* User commands align right */
+    align-self: flex-end;
+    word-wrap: break-word;
+}
+
+.agent-input {
+    display: flex;
+    padding: 10px 15px;
+    border-top: 1px solid #e0e6eb;
+    background-color: #f0f2f5;
+    gap: 10px;
+}
+
+.agent-input input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.agent-input button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.agent-input button:hover {
+    background-color: #0056b3;
+}

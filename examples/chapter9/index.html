@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 9: Personalization Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Personalized Content Feed (Simulated)</h1>
+        <p>Select your interests to see personalized article recommendations.</p>
+        
+        <div class="preferences-selection">
+            <h2>Your Interests:</h2>
+            <div class="checkbox-group">
+                <input type="checkbox" id="ai" value="AI"> <label for="ai">Artificial Intelligence</label><br>
+                <input type="checkbox" id="tech" value="Tech"> <label for="tech">Technology Trends</label><br>
+                <input type="checkbox" id="science" value="Science"> <label for="science">Science & Research</label><br>
+                <input type="checkbox" id="business" value="Business"> <label for="business">Business & Finance</label><br>
+                <input type="checkbox" id="creativity" value="Creativity"> <label for="creativity">Creativity & Design</label><br>
+            </div>
+            <button id="update-recommendations-btn">Update Recommendations</button>
+        </div>
+
+        <div id="recommendations-area">
+            <h2>Recommended Articles:</h2>
+            <ul id="recommendations-list">
+                <li>Select your interests and click 'Update Recommendations' to see personalized content.</li>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

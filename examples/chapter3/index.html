@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Uncertainty Visualization Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Prediction with Confidence</h1>
+        <p>Enter a statement to see an AI's predicted category and its confidence level.</p>
+        <textarea id="statement-input" placeholder="e.g., This movie was fantastic!"></textarea>
+        <button id="predict-btn">Predict Category</button>
+        <div id="result">
+            <h2>Prediction: <span id="prediction-text">---</span></h2>
+            <div class="confidence-bar-container">
+                Confidence: <span id="confidence-percentage">0%</span>
+                <div class="confidence-bar">
+                    <div id="confidence-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

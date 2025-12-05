@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: AI Model Types Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Explore AI Model Types</h1>
+        <p>Select an AI task and provide input to see how different models might respond.</p>
+
+        <div class="input-group">
+            <label for="ai-task-select">Select AI Task:</label>
+            <select id="ai-task-select">
+                <option value="sentiment_analysis">Sentiment Analysis</option>
+                <option value="text_summarization">Text Summarization</option>
+                <option value="image_captioning">Image Captioning (Simulated)</option>
+                <option value="translation">Language Translation</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="user-input-text">Input:</label>
+            <textarea id="user-input-text" placeholder="Enter text or describe an image for captioning..."></textarea>
+        </div>
+        
+        <button id="process-btn">Process Input</button>
+
+        <div id="output-area">
+            <h2>AI Output:</h2>
+            <p id="ai-output-text">Select a task and provide input to see the simulated AI's response.</p>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
