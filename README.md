@@ -1,149 +1,124 @@
-# 📊 Business Report Automation System
+# AI-Native Applications: A Practical Guide 📘
 
-**Turn a folder of messy monthly store reports into one clean master dataset and an interactive KPI dashboard — in a single command.**
-
-🔗 **Live demo:** https://report-automation-dashboard.vercel.app
-*(runs on fully anonymized sample data — `Demo Store 01…08`, generic products, no real business figures)*
+> A structured, hands-on handbook for designing and building applications with AI at their core — not bolted on as a feature.
 
 ---
 
 ## 🎯 Problem
 
-Multi-site retail and back-office finance teams live on the same monthly ritual: gather a dozen store/commissary exports, reconcile columns that never quite line up (`Qty` vs `Quantity`, `Site` vs `Location`, `Amount` vs `Sales`), paste everything into one workbook, then hand-build the summary numbers for management. It is slow, it is repeated every single month, and every manual copy-paste is a chance to introduce a silent error into the numbers leadership actually decides on.
+Most teams adopt AI the same way: pick a use case, call an API, ship a demo. The result is "AI-as-a-feature" — a deterministic app with a smart widget stapled on. Building software that is *intelligent, adaptive, and personalized by design* requires rethinking architecture, data, UX, and operations from the ground up.
 
-## 💡 Solution
+There's plenty of material on individual pieces (prompt engineering, one-off RAG tutorials, MLOps blog posts), but far less that connects them into a coherent way of thinking about the whole system. This guide fills that gap: a 13-chapter progression from first principles to production concerns, with a runnable interactive example for nearly every chapter so the concepts stay concrete.
 
-Drop the raw reports into one folder and run one command. The system ingests every `.csv`/`.xlsx` file, normalizes the inconsistent headers into a single canonical schema, consolidates them into one tidy master table, computes the management KPIs, and regenerates a self-contained interactive dashboard — no server, no database, no manual reconciliation.
+## 📚 What's Inside
 
-## 🏗️ Architecture
+The book is organized into four parts across 13 chapters, plus a preface and an appendix of interactive examples.
 
-A deliberately simple, portable pipeline: files in → Python processing → static dashboard out.
+**Preface — The AI-Native Revolution:** the paradigm shift from traditional software to AI-native systems, and how to read the book.
+
+**Part 1 — Foundations**
+- **Chapter 1: What Are AI-Native Applications?** — defining "AI-native"; the intelligent / adaptive / personalized characteristics; contrast with traditional software and "AI-as-a-feature."
+- **Chapter 2: The Evolution of AI and Software Development** — a short history of AI in software, the impact of LLMs and foundation models, and the reshaped development lifecycle.
+- **Chapter 3: Core Principles of AI-Native Design** — designing for uncertainty and probability, human-in-the-loop and collaborative intelligence, data-driven and continuous learning.
+
+**Part 2 — The Building Blocks**
+- **Chapter 4: Choosing the Right AI Models** — model types (LLMs, computer vision, etc.), fine-tuning vs. off-the-shelf APIs, and evaluating performance vs. cost.
+- **Chapter 5: Data — The Fuel for AI-Native Systems** — data quality, data pipelines and feature stores, vector databases and embeddings.
+- **Chapter 6: MLOps — Infrastructure and Operations** — training/serving infrastructure, monitoring and observability, and CI/CD (and continuous training) for AI systems.
+
+**Part 3 — Creating AI-Native Experiences**
+- **Chapter 7: Designing AI-Powered User Interfaces** — new UI patterns, conversational interfaces, and visualizing uncertainty and model confidence.
+- **Chapter 8: Building Intelligent Agents and Workflows** — autonomous agents, orchestrating multiple models, and multi-step tool-using workflows.
+- **Chapter 9: Personalization and Adaptation** — systems that learn from interaction, personalization techniques, and the ethics of adaptive systems.
+
+**Part 4 — The AI-Native Ecosystem**
+- **Chapter 10: APIs and the Composable Enterprise** — the role of AI APIs, composable systems built from AI services, and the future AI-native stack.
+- **Chapter 11: The Role of Open Source** — the open-source AI landscape, leveraging open models and tools, and contributing back.
+- **Chapter 12: The Future of AI-Native** — emerging trends, long-term impact on technology and society, and preparing for what's next.
+- **Chapter 13: Conclusion** — key takeaways tying the parts together and a look ahead.
+
+## 🗂️ How It's Organized
 
 ```
-01_input_reports/          ← drop monthly reports here (.csv / .xlsx / .xlsm)
-        │
-        ▼
-process_reports.py         ← 1. read every file  (csv stdlib / openpyxl for Excel)
-                             2. map messy headers → canonical schema (ALIASES table)
-                             3. keep only rows with a real Site/Product signal
-                             4. consolidate + compute KPIs
-        │
-        ├── 03_output/master_data_<timestamp>.csv   → tidy consolidated master table
-        ├── 03_output/summary_report.json           → run summary (totals, KPIs)
-        └── dashboard/data.js                        → window.REPORT_DATA payload
-                    │
-                    ▼
-        dashboard/dashboard.html   ← open in any browser (fully static, zero deps)
+AI-Native-Book/
+├── Chapter1.md … Chapter13.md          # The full text of the guide, one file per chapter
+├── AI-Native-Book-Full-Report.pdf      # The complete book compiled as a single PDF
+├── examples/                           # Runnable interactive examples
+│   ├── index.html                      # Ch.1 — Sentiment Analysis demo
+│   ├── chapter2/  … chapter12/         # One self-contained demo per chapter (HTML + CSS + JS)
+│   └── ...
+├── streamlit_app.py                    # Python/Streamlit "Future AI Scenario Generator" demo
+└── LICENSE
 ```
 
-```mermaid
-flowchart LR
-    A[Raw reports<br/>csv / xlsx] --> B[process_reports.py]
-    B --> C[master_data.csv]
-    B --> D[summary_report.json]
-    B --> E[dashboard/data.js]
-    E --> F[dashboard.html<br/>KPIs · charts · filters]
-```
+Each chapter is a standalone Markdown file so it can be read in order or dipped into as a reference. Concepts that benefit from interaction have a matching example under `examples/`, each built as a small, dependency-free web app (plain HTML/CSS/JavaScript) so it runs by simply opening a file in the browser.
 
-**Real files that do the work:**
+> **Note on the examples:** the interactive demos illustrate *interaction patterns and UX* for each concept. Their AI logic is **simulated in the browser** (no external API keys or model calls required), which keeps them instantly runnable and free to explore. They are teaching aids for the patterns, not production integrations.
 
-| File | Role |
-|------|------|
-| `process_reports.py` | Core processor — ingest, header normalization, consolidation, KPI computation, output generation, and a deterministic demo-data generator (`--demo`) |
-| `dashboard/dashboard.html` | Self-contained dashboard — KPI cards, bar charts, donut, top-10 table, Site/Category filters (vanilla JS + inline SVG) |
-| `dashboard/data.js` | Generated data payload (`window.REPORT_DATA`) that keeps the dashboard static and `file://`-openable |
-| `automation/*.ps1` | Windows orchestration — run, process-only, file-watcher, and a daily scheduled task |
+## 🔑 Key Topics
 
-## ✨ Key Features
+The four core themes of modern AI engineering map directly onto the chapters:
 
-- **Header normalization** — an `ALIASES` map folds real-world header variants (`Qty`/`Quantity`/`Units`, `Site`/`Location`/`Store`, `Amount`/`Cost`/`Sales`, …) into a fixed 6-column canonical schema, instead of naively dumping every sheet.
-- **Multi-format ingest** — CSV via the standard library; `.xlsx`/`.xlsm` via optional `openpyxl`, reading every worksheet.
-- **Signal filtering** — rows are kept only when they carry a real `Site` or `Product` value, so blank/footer rows never pollute the master table.
-- **KPI engine** — total sales, total quantity, active vs. no-movement product counts, written to both JSON and the dashboard payload.
-- **Interactive dashboard** — Sales by Category, Sales by Site, Category Share donut, and a Top-10 Products table, all re-filterable live by Site and Category. No build step, no CDN, no runtime dependencies.
-- **Three ways to run** — manual one-shot, a `FileSystemWatcher` that auto-processes new drops, or a daily 8 AM Windows scheduled task.
-- **Portable by design** — every path resolves relative to the script, so the project runs from any location with no hard-coded user paths.
+| Theme | Where it's covered |
+|-------|--------------------|
+| **LLMs & foundation models** | Ch. 2 (evolution & impact), Ch. 4 (model selection, fine-tuning vs. APIs) |
+| **RAG, embeddings & vector search** | Ch. 5 (data, embeddings, vector databases), with a semantic-search demo |
+| **AI agents & orchestration** | Ch. 8 (autonomous agents, tool use, multi-step workflows), Ch. 10 (API orchestration) |
+| **MLOps** | Ch. 6 (infrastructure, monitoring/observability, CI/CD & continuous training) |
 
-## 🛠️ Tech Stack
+Cross-cutting concerns — designing for uncertainty (Ch. 3, 7), human-in-the-loop collaboration, personalization and its ethics (Ch. 9), and the open-source ecosystem (Ch. 11) — run throughout.
 
-- **Python 3** — core processing on the standard library (`csv`, `json`, `pathlib`); **optional** `openpyxl>=3.1` only for Excel input.
-- **Vanilla JS + inline SVG** — the dashboard renders bars and the donut chart by hand; zero front-end frameworks, zero runtime dependencies.
-- **PowerShell** — Windows automation and scheduling.
-- **Vercel** — hosts the live static dashboard.
+## 🛠️ Tech Stack / Tools Covered
 
-## 🧠 Engineering Decisions
+- **Concepts & architecture:** LLMs and foundation models, embeddings, vector databases, feature stores, data pipelines, retrieval, agents and tool orchestration, MLOps (monitoring, drift, CI/CD/CT).
+- **Example demos:** plain **HTML, CSS, and vanilla JavaScript** (zero build step, zero dependencies) for the chapter demos, plus **Python + Streamlit** for the scenario-generator demo.
+- **Formats:** Markdown chapters for reading, a compiled **PDF** of the full book, and browser-runnable examples.
 
-- **Canonical schema over ad-hoc merging.** The hard part of real reporting isn't summing numbers — it's that every source spells its columns differently. Centralizing that in one extensible `ALIASES` table means supporting a new report format is a one-line change, not a rewrite.
-- **Static dashboard, no backend.** Processing emits a plain `data.js` payload the HTML reads directly, so the dashboard opens over `file://` or any static host (like Vercel) with nothing to deploy or secure. For a report that ships once a month, a server would be pure overhead.
-- **Deterministic demo data.** `--demo` uses a seeded linear-congruential generator, so the public sample is reproducible and review-friendly — and, critically, contains no real company data.
-- **Stdlib-first.** CSV needs zero installs; `openpyxl` is imported lazily and only when an Excel file is actually encountered, so the common path has no dependencies at all.
+## 👥 Who It's For
 
-## 📈 Results / Demo
+- **Engineers and tech leads** moving from "adding an AI feature" to architecting AI-native systems.
+- **Product and design** people who need a shared vocabulary for AI UX, uncertainty, and human-in-the-loop.
+- **Students and career-switchers** who want a guided path through LLMs, RAG, agents, and MLOps with concrete, runnable examples.
 
-🔗 **Live dashboard:** https://report-automation-dashboard.vercel.app
+No deep ML background is assumed; the guide builds from first principles.
 
-The live demo runs the anonymized sample end-to-end: **216 consolidated records** across **8 demo stores** and **8 product categories**, with headline KPIs (total sales, quantity, active vs. no-movement products) and live Site/Category filtering — exactly what the pipeline produces from a real monthly drop, minus any real business data.
+## ▶️ How to Use / Run the Examples
 
-## 🖼️ Screenshot
+**Read the book**
+- Browse the `Chapter*.md` files here on GitHub in order, or
+- Open `AI-Native-Book-Full-Report.pdf` for the complete compiled book.
 
-![Dashboard](docs/dashboard.png)
-
-## 🚀 Setup / Installation
-
+**Run the browser demos** (no install, no keys):
 ```bash
-# 1. (optional) install Excel support — CSV needs nothing extra
-pip install -r requirements.txt
-
-# 2. generate anonymized demo data + build the dashboard payload
-python process_reports.py --demo
-
-# 3. open the dashboard
-#    dashboard/dashboard.html   (or the live demo link above)
+git clone https://github.com/furqunali/AI-Native-Book.git
+cd AI-Native-Book/examples
+# open any example directly in your browser, e.g.:
+#   examples/index.html          (Ch.1 sentiment analysis)
+#   examples/chapter8/index.html (Ch.8 AI agent simulation)
 ```
-
-Run on **real** reports by dropping them into `01_input_reports/` and running:
-
+Or serve them locally to avoid file-path restrictions:
 ```bash
-python process_reports.py
+cd AI-Native-Book/examples
+python -m http.server 8000
+# then visit http://localhost:8000
 ```
 
-### Automation (Windows)
-
-| Script | Purpose |
-|--------|---------|
-| `automation/Run_All.ps1` | Process reports **and** open the dashboard |
-| `automation/Process_Reports.ps1` | Process only |
-| `automation/File_Watcher.ps1` | Auto-process any new file added to the input folder |
-| `automation/Create_Scheduled_Task.ps1` | Register a daily 8 AM run (run once, elevated) |
-
-### Canonical schema
-
-| Column | Description |
-|--------|-------------|
-| `Site` | Store / location |
-| `Category` | Product group |
-| `Product` | Item description |
-| `Quantity` | Units moved |
-| `Sales` | Sales / cost value |
-| `Status` | `Active` or `No Movement` |
-
-## 🔒 Security
-
-- **No real business data.** This public repo ships **anonymized sample data only** — generic store names, generic products, deterministically generated figures.
-- **Real data can't be committed by accident.** `.gitignore` blocks the entire `01_input_reports/` folder (except the tracked `*DEMO*` sample), all `03_output/` artifacts, logs, and every raw `*.xlsx`/`*.xlsm`/`*.xls` workbook as a safety net.
-- **No secrets in code.** The pipeline reads local files only; any environment-specific configuration stays in the environment, never in the repo.
+**Run the Streamlit demo:**
+```bash
+pip install streamlit
+streamlit run streamlit_app.py
+```
 
 ## 🗺️ Roadmap
 
-- Additional input formats and richer header-alias coverage
-- Historical / month-over-month trend views in the dashboard
-- Cross-platform automation (currently Windows/PowerShell)
-- Optional emailed summary on each scheduled run
+Honest, planned additions (some are noted in the book as future work):
+
+- [ ] **Glossary** of key terms referenced throughout the chapters (currently a placeholder in the appendix).
+- [ ] **Live-API example variants** — optional versions of the demos wired to real LLM / embedding APIs, alongside the simulated ones.
+- [ ] **Deeper RAG chapter material** — chunking strategies, retrieval evaluation, and reranking.
+- [ ] **Expanded agents section** — planning, memory, and multi-agent patterns.
+- [ ] **Worked MLOps example** — a small end-to-end monitoring/eval walkthrough to complement Chapter 6.
 
 ## 📄 License
 
-MIT — see [`LICENSE`](LICENSE).
-
----
-
-*Built by **Furqan Ali** — Senior AI Engineer · finance & operations automation.*
+Released under the terms in [LICENSE](LICENSE).
