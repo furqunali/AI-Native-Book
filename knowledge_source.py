@@ -49,7 +49,7 @@ def chunk_markdown(path: Path, max_chars: int = 1600) -> list[KnowledgeChunk]:
 
     if buffer:
         digest = hashlib.sha256(f"{path.name}:{index}:{buffer}".encode()).hexdigest()[:16]
-        chunks.append(KnowledgeChunk(digest, path.as_posix(), title, buffer, index))
+        chunks.append(KnowledgeChunk(digest, path.name, title, buffer, index))
     return chunks
 
 
