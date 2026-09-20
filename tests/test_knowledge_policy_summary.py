@@ -7,4 +7,9 @@ def test_summary_counts_severity_and_health():
         HealthFinding("EMPTY_CHUNKS", "error", "empty chunks"),
         HealthFinding("NOTE", "info", "ok"),
     )
-    assert summarize_findings(findings) == (3, 1, 1, 1, False)
+    summary = summarize_findings(findings)
+    assert summary.total == 3
+    assert summary.errors == 1
+    assert summary.warnings == 1
+    assert summary.infos == 1
+    assert not summary.healthy
