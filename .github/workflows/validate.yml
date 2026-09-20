@@ -1,0 +1,45 @@
+name: Book validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run knowledge-source tests
+        run: |
+          python -m pip install --upgrade pip pytest
+          pytest -q
+      - name: Audit eligible LOC
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          allowed = {".py",".js",".jsx",".ts",".tsx",".java",".c",".h",".cpp",".cc",".cxx",".hpp",".go",".rs",".rb",".php"}
+          excluded = {"node_modules","dist","build","coverage",".venv","venv","vendor","generated",".git"}
+          total = files = 0
+          for path in Path(".").rglob("*"):
+              if not path.is_file() or path.suffix.lower() not in allowed:
+                  continue
+              if any(part in excluded for part in path.parts):
+                  continue
+              lines = sum(1 for line in path.read_text(encoding="utf-8", errors="ignore").splitlines() if line.strip())
+              if lines:
+                  files += 1
+                  total += lines
+          print(f"ELIGIBLE_LOC={total}")
+          print(f"ELIGIBLE_FILES={files}")
+          print("STATUS=PASS" if total >= 5000 else "STATUS=BELOW_TARGET")
+          PY
