@@ -40,7 +40,7 @@ def chunk_markdown(path: Path, max_chars: int = 1600) -> list[KnowledgeChunk]:
             continue
         candidate = f"{buffer}\n\n{clean}".strip()
         if buffer and len(candidate) > max_chars:
-            digest = hashlib.sha256(f"{path.as_posix()}:{index}:{buffer}".encode()).hexdigest()[:16]
+            digest = hashlib.sha256(f"{path.name}:{index}:{buffer}".encode()).hexdigest()[:16]
             chunks.append(KnowledgeChunk(digest, path.as_posix(), title, buffer, index))
             index += 1
             buffer = clean
