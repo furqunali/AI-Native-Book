@@ -6,6 +6,7 @@ def test_profile_reports_source_share_and_gap():
     p = profile_distribution(SourceDistribution(3, 10, 5, 2, 0.5))
     assert p.source_share == 0.5
     assert p.chunk_share_gap == 0.3
+    assert p.smallest_source_share == 0.2
     assert p.balanced
 
 def test_profile_marks_concentrated_distribution():
