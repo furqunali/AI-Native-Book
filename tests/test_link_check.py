@@ -135,3 +135,12 @@ def test_real_book_has_no_broken_internal_links():
     report = check_links(Path("."))
     assert report.documents >= 14  # 13 chapters + README
     assert report.valid, [f"{i.source} -> {i.target} ({i.code})" for i in report.issues]
+
+
+def test_internal_link_cannot_escape_root(tmp_path):
+    outside = tmp_path.parent / "outside.md"
+    outside.write_text("# Outside\n", encoding="utf-8")
+    doc = tmp_path / "a.md"
+    doc.write_text("[escape](../outside.md)\n", encoding="utf-8")
+    _, issues = check_document(doc, tmp_path)
+    assert [i.code for i in issues] == ["OUTSIDE_ROOT"]
