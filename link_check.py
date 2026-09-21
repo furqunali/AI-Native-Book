@@ -180,6 +180,13 @@ def check_document(
 
         if link.path:
             target_path = (path.parent / link.path).resolve()
+            try:
+                target_path.relative_to(root)
+            except ValueError:
+                issues.append(
+                    LinkIssue(source, link.target, "OUTSIDE_ROOT", f"linked file escapes project root: {link.path}")
+                )
+                continue
             if not target_path.exists():
                 issues.append(
                     LinkIssue(source, link.target, "MISSING_FILE", f"linked file does not exist: {link.path}")
