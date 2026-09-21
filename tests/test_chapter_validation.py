@@ -14,3 +14,9 @@ def test_heading_inside_fenced_code_does_not_count():
     text="```markdown\n# Not a chapter heading\n```\n\n"+"Useful content. "*20
     issues=validate_chapter(Path("chapter.md"), text)
     assert "heading" in {issue.code for issue in issues}
+
+
+def test_heading_inside_tilde_fence_does_not_count():
+    text="~~~markdown\n# Not a chapter heading\n~~~\n\n"+"Useful content. "*20
+    issues=validate_chapter(Path("chapter.md"), text)
+    assert "heading" in {issue.code for issue in issues}

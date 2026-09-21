@@ -11,7 +11,18 @@ class ChapterIssue:
     message: str
 
 def _strip_fenced_code(text: str) -> str:
-    return re.sub(r"^```.*?^```[ \\t]*$", "", text, flags=re.MULTILINE | re.DOTALL)
+    lines = []
+    fence = None
+    for line in text.splitlines():
+        stripped = line.lstrip()
+        if fence is None:
+            if stripped.startswith(("```", "~~~")):
+                fence = stripped[:3]
+                continue
+            lines.append(line)
+        elif stripped.startswith(fence):
+            fence = None
+    return "\n".join(lines)
 
 def validate_chapter(path: Path, text: str) -> list[ChapterIssue]:
     issues=[]
