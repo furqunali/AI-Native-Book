@@ -113,7 +113,7 @@ streamlit run streamlit_app.py
 
 Honest, planned additions (some are noted in the book as future work):
 
-- [ ] **Glossary** of key terms referenced throughout the chapters (currently a placeholder in the appendix).
+- [x] **Glossary** of key terms referenced throughout the chapters — see [`GLOSSARY.md`](GLOSSARY.md).
 - [ ] **Live-API example variants** — optional versions of the demos wired to real LLM / embedding APIs, alongside the simulated ones.
 - [ ] **Deeper RAG chapter material** — chunking strategies, retrieval evaluation, and reranking.
 - [ ] **Expanded agents section** — planning, memory, and multi-agent patterns.
