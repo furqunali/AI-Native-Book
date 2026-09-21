@@ -10,6 +10,9 @@ class ChapterIssue:
     code: str
     message: str
 
+def _strip_fenced_code(text: str) -> str:
+    return re.sub(r"^```.*?^```[ \\t]*$", "", text, flags=re.MULTILINE | re.DOTALL)
+
 def validate_chapter(path: Path, text: str) -> list[ChapterIssue]:
     issues=[]
     if not text.strip():
