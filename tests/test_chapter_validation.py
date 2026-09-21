@@ -20,3 +20,9 @@ def test_heading_inside_tilde_fence_does_not_count():
     text="~~~markdown\n# Not a chapter heading\n~~~\n\n"+"Useful content. "*20
     issues=validate_chapter(Path("chapter.md"), text)
     assert "heading" in {issue.code for issue in issues}
+
+
+def test_fenced_code_does_not_satisfy_body_length():
+    text = "# Chapter\n\n" + "```\n" + ("example code. " * 15) + "```\n\n" + ("Useful content. " * 4)
+    issues = validate_chapter(Path("chapter.md"), text)
+    assert "short" in {issue.code for issue in issues}
