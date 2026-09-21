@@ -144,3 +144,11 @@ def test_internal_link_cannot_escape_root(tmp_path):
     doc.write_text("[escape](../outside.md)\n", encoding="utf-8")
     _, issues = check_document(doc, tmp_path)
     assert [i.code for i in issues] == ["OUTSIDE_ROOT"]
+
+
+def test_duplicate_headings_get_github_style_suffixes(tmp_path):
+    doc = tmp_path / "a.md"
+    doc.write_text("# Repeat\n## Repeat\n### Repeat\n", encoding="utf-8")
+    assert extract_headings(doc.read_text(encoding="utf-8")) == (
+        "repeat", "repeat-1", "repeat-2"
+    )

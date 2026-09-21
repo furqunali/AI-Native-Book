@@ -108,14 +108,18 @@ def extract_headings(text: str) -> tuple[str, ...]:
     """
     body = _strip_fenced_code(text)
     slugs: list[str] = []
+    counts: dict[str, int] = {}
     for line in body.splitlines():
         match = _HEADING.match(line)
         if not match:
             continue
-        slug = slugify(match.group(2))
-        if slug:
-            slugs.append(slug)
-    return tuple(dict.fromkeys(slugs))
+        base = slugify(match.group(2))
+        if not base:
+            continue
+        occurrence = counts.get(base, 0)
+        counts[base] = occurrence + 1
+        slugs.append(base if occurrence == 0 else f"{base}-{occurrence}")
+    return tuple(slugs)
 
 
 def parse_target(target: str) -> tuple[str, str]:
