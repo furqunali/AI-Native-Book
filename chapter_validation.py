@@ -25,6 +25,8 @@ def _strip_fenced_code(text: str) -> str:
     return "\n".join(lines)
 
 def validate_chapter(path: Path, text: str) -> list[ChapterIssue]:
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
     issues=[]
     if not text.strip():
         issues.append(ChapterIssue(str(path),"empty","chapter is empty"))
