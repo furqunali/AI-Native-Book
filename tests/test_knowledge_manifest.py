@@ -67,4 +67,4 @@ def test_empty_manifest_is_valid():
     assert manifest.chunk_count == 0
     assert manifest.source_count == 0
     assert manifest.total_characters == 0
-    assert manifest.sources == tuple()
+    assert manifest.sources == ()
