@@ -109,6 +109,12 @@ pip install streamlit
 streamlit run streamlit_app.py
 ```
 
+
+
+## Engineering Validation
+
+The repository includes an offline Markdown link and cross-reference checker for the book content, with validation scoped to the project root. Recent hardening also rejects non-string chapter content and preserves duplicate Markdown heading anchors so generated references remain deterministic.
+
 ## 🗺️ Roadmap
 
 Honest, planned additions (some are noted in the book as future work):
