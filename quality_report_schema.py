@@ -7,9 +7,7 @@ REQUIRED_FIELDS = frozenset({"chunks", "empty", "duplicate_ids", "duplicate_text
 def validate_quality_report(payload: dict) -> bool:
     if not isinstance(payload, dict) or set(payload) != REQUIRED_FIELDS:
         return False
-    if not all(isinstance(payload[name], bool) for name in ("valid", "passed")):
+    counts = ("chunks", "empty", "duplicate_ids", "duplicate_texts")
+    if not all(type(payload[name]) is int and payload[name] >= 0 for name in counts):
         return False
-    return all(
-        type(payload[name]) is int and payload[name] >= 0
-        for name in ("chunks", "empty", "duplicate_ids", "duplicate_texts")
-    )
+    return all(isinstance(payload[name], bool) for name in ("valid", "passed"))
