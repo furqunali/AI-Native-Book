@@ -132,6 +132,8 @@ def parse_links(source: str, text: str) -> tuple[Link, ...]:
     """Extract and classify every inline link in a document's text."""
     if not isinstance(text, str):
         raise TypeError("text must be a string")
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
     body = _strip_fenced_code(text)
     links: list[Link] = []
     for target in _INLINE_LINK.findall(body):
