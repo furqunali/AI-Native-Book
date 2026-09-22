@@ -1,5 +1,6 @@
 from citation_report import build_citation_report
 
+
 def test_report_calculates_valid_coverage():
     report=build_citation_report("[a] [b] [a]", {"a"})
     assert report.citations == ("a","b")

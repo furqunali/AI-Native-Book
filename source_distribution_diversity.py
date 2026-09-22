@@ -1,7 +1,10 @@
 """Deterministic diversity metrics for knowledge-source distribution."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_distribution import SourceDistribution
+
 
 @dataclass(frozen=True)
 class DistributionDiversity:

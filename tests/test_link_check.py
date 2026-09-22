@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 
 from link_check import (
-    Link,
     LinkReport,
     check_document,
     check_links,

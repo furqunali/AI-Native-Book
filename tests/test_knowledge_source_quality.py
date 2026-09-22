@@ -1,6 +1,7 @@
 from knowledge_source import KnowledgeChunk
 from knowledge_source_quality import profile_source_quality
 
+
 def c(i,s,t): return KnowledgeChunk(str(i),s,"title",t,i)
 
 def test_profiles_sources_and_duplicates():

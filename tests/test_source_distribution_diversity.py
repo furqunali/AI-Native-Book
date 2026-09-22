@@ -1,6 +1,8 @@
+import pytest
+
 from knowledge_distribution import SourceDistribution
 from source_distribution_diversity import measure_distribution_diversity
-import pytest
+
 
 def test_diversity_reports_ideal_share_and_gap():
     d = measure_distribution_diversity(SourceDistribution(4, 20, 10, 2, .5))

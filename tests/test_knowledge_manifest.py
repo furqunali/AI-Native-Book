@@ -1,8 +1,5 @@
 from pathlib import Path
 
-import pytest
-
-from knowledge_source import KnowledgeChunk
 from knowledge_manifest import (
     build_book_manifest,
     build_manifest,
@@ -10,6 +7,7 @@ from knowledge_manifest import (
     summarize_chunks,
     write_manifest,
 )
+from knowledge_source import KnowledgeChunk
 
 
 def chunk(identifier: str, source: str, text: str, index: int) -> KnowledgeChunk:

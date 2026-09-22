@@ -2,6 +2,7 @@ from knowledge_quality import QualityReport
 from quality_gate import QualityGate
 from quality_report_export import quality_report_dict, quality_report_json
 
+
 def test_export_is_stable():
     result = QualityGate(QualityReport(3, 0, 1, 2, False), True)
     assert quality_report_dict(result) == {

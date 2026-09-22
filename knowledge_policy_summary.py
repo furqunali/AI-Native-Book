@@ -1,7 +1,10 @@
 """Aggregate deterministic knowledge policy findings."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_policy import HealthFinding
+
 
 @dataclass(frozen=True)
 class PolicySummary:

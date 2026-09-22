@@ -1,11 +1,15 @@
 """CLI for validating and exporting the AI-Native Book knowledge source."""
 from __future__ import annotations
-import argparse, json
+
+import argparse
+import json
 from pathlib import Path
+
 from chapter_validation import validate_chapter
 from knowledge_manifest import build_book_manifest, write_manifest
 from knowledge_quality import inspect_chunks
 from knowledge_source import build_knowledge_source, write_jsonl
+
 
 def build_parser():
     p=argparse.ArgumentParser(description="Validate and export book knowledge")

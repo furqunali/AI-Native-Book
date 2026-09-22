@@ -1,9 +1,12 @@
 """Stable JSON export for corpus quality-gate results."""
 from __future__ import annotations
+
 import json
 from dataclasses import asdict
+
 from quality_gate import QualityGate
 from quality_report_schema import validate_quality_report
+
 
 def quality_report_dict(result: QualityGate) -> dict:
     if not isinstance(result, QualityGate):

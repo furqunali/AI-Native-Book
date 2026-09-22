@@ -1,7 +1,10 @@
 """Policy findings derived from deterministic knowledge health reports."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_health import KnowledgeHealth
+
 
 @dataclass(frozen=True)
 class HealthFinding:
