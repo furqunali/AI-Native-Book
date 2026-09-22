@@ -160,3 +160,9 @@ def test_check_document_rejects_non_string_text(tmp_path):
     import pytest
     with pytest.raises(TypeError, match="text must be a string"):
         check_document(doc, tmp_path, text=123)
+
+
+def test_parse_links_rejects_non_string_text():
+    import pytest
+    with pytest.raises(TypeError, match="text must be a string"):
+        parse_links("doc.md", None)  # type: ignore[arg-type]
