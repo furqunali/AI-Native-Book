@@ -164,6 +164,8 @@ def check_document(
     in document order.
     """
     root = root.resolve()
+    if text is not None and not isinstance(text, str):
+        raise TypeError("text must be a string")
     if text is None:
         text = path.read_text(encoding="utf-8")
     try:
