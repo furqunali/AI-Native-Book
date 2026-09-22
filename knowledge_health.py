@@ -1,8 +1,11 @@
 """Deterministic health report for the AI-Native Book knowledge corpus."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_manifest import KnowledgeManifest
 from knowledge_quality import QualityReport
+
 
 @dataclass(frozen=True)
 class KnowledgeHealth:

@@ -1,7 +1,10 @@
 """Deterministic citation coverage metrics for generated answers."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_citation import extract_citations, validate_citations
+
 
 @dataclass(frozen=True)
 class CitationReport:

@@ -1,6 +1,8 @@
+import pytest
+
 from knowledge_distribution import SourceDistribution
 from source_distribution_profile import profile_distribution
-import pytest
+
 
 def test_profile_reports_source_share_and_gap():
     p = profile_distribution(SourceDistribution(3, 10, 5, 2, 0.5))

@@ -1,7 +1,10 @@
 """Deterministic per-source quality diagnostics for the book corpus."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_source import KnowledgeChunk
+
 
 @dataclass(frozen=True)
 class SourceQuality:

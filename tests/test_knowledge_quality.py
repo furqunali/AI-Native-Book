@@ -1,5 +1,6 @@
-from knowledge_source import KnowledgeChunk
 from knowledge_quality import inspect_chunks
+from knowledge_source import KnowledgeChunk
+
 
 def c(identifier,text):
     return KnowledgeChunk(identifier,"Chapter1.md","Intro",text,0)

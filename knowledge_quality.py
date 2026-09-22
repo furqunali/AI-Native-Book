@@ -1,7 +1,10 @@
 """Quality checks for the AI-Native Book knowledge corpus."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_source import KnowledgeChunk
+
 
 @dataclass(frozen=True)
 class QualityReport:

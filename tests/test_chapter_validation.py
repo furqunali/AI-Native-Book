@@ -1,5 +1,7 @@
 from pathlib import Path
+
 from chapter_validation import validate_chapter
+
 
 def test_valid_chapter_has_no_issues():
     text="# Chapter\n\n"+"Useful content. "*30

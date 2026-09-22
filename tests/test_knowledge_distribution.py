@@ -1,6 +1,8 @@
-from knowledge_source import KnowledgeChunk
-from knowledge_distribution import summarize_source_distribution
 import pytest
+
+from knowledge_distribution import summarize_source_distribution
+from knowledge_source import KnowledgeChunk
+
 
 def test_distribution_reports_source_concentration():
     chunks = [

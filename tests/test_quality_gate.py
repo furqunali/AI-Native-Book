@@ -1,6 +1,7 @@
 from knowledge_source import KnowledgeChunk
 from quality_gate import evaluate_quality_gate
 
+
 def c(i,text): return KnowledgeChunk(str(i),"book.md","Book",text,i)
 
 def test_gate_passes_clean_corpus():

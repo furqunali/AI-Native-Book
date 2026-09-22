@@ -1,7 +1,10 @@
 """Deterministic corpus quality gate built on existing quality inspection."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from knowledge_quality import QualityReport, inspect_chunks
+
 
 @dataclass(frozen=True)
 class QualityGate:

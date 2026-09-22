@@ -1,5 +1,6 @@
-import streamlit as st
 import random
+
+import streamlit as st
 
 st.title("Future AI Scenario Generator (Simulated)")
 
