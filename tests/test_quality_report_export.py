@@ -18,3 +18,7 @@ def test_export_rejects_wrong_type():
         pass
     else:
         raise AssertionError("expected TypeError")
+
+
+def test_export_enforces_schema():
+    assert quality_report_dict(QualityGate(QualityReport(1, 0, 0, 0, True), True))["chunks"] == 1
