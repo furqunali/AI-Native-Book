@@ -152,3 +152,11 @@ def test_duplicate_headings_get_github_style_suffixes(tmp_path):
     assert extract_headings(doc.read_text(encoding="utf-8")) == (
         "repeat", "repeat-1", "repeat-2"
     )
+
+
+def test_check_document_rejects_non_string_text(tmp_path):
+    doc = tmp_path / "a.md"
+    doc.write_text("[ok](b.md)\n", encoding="utf-8")
+    import pytest
+    with pytest.raises(TypeError, match="text must be a string"):
+        check_document(doc, tmp_path, text=123)
