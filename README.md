@@ -1,5 +1,7 @@
 # AI-Native Applications: A Practical Guide 📘
 
+![Lines of code](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/furqunali/AI-Native-Book/main/.github/badges/loc.json)
+
 > A structured, hands-on handbook for designing and building applications with AI at their core — not bolted on as a feature.
 
 ---
